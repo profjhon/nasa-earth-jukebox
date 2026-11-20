@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-4 shadow">
+    <h4 class="mb-3 text-warning"><i class="bi bi-shield-lock"></i> Gestión de Usuarios y Roles (Panel Admin)</h4>
+    <div class="table-responsive">
+        <table class="table table-dark table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Usuario</th>
+                    <th>Rol Actual</th>
+                    <th>Cambiar Permisos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in usuarios %}
+                <tr>
+                    <td>{{ u.id }}</td>
+                    <td>{{ u.nombre }}</td>
+                    <td>{{ u.username }}</td>
+                    <td>
+                        <span class="badge {% if u.rol == 'admin' %}bg-danger{% else %}bg-info{% endif %}">
+                            {{ u.rol | upper }}
+                        </span>
+                    </td>
+                    <td>
+                        <form action="{{ url_for('cambiar_rol', id=u.id) }}" method="POST" class="d-flex gap-2">
+                            <select name="rol" class="form-select form-select-sm w-auto">
+                                <option value="explorador" {% if u.rol == 'explorador' %}selected{% endif %}>Explorador</option>
+                                <option value="admin" {% if u.rol == 'admin' %}selected{% endif %}>Admin</option>
+                            </select>
+                            <button type="submit" class="btn btn-sm btn-outline-warning">Aplicar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

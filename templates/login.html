@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card shadow-lg p-4">
+            <div class="text-center mb-4">
+                <span class="badge nasa-badge mb-2">NASA Space Apps Challenge 2026</span>
+                <h3>La Máquina de Discos de la Tierra</h3>
+                <p class="text-secondary small">Sonorización de datos del Earth Information Center (EIC)</p>
+            </div>
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Usuario</label>
+                    <input type="text" name="username" class="form-control" placeholder="Ej. admin" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-info w-100 fw-bold">Iniciar Sesión</button>
+            </form>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-1 small text-secondary">¿No tienes cuenta de explorador?</p>
+                <a href="{{ url_for('register') }}" class="btn btn-outline-light btn-sm">Registrarse aquí</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
